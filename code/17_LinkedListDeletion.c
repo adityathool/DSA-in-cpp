@@ -13,7 +13,7 @@ void linkedListTraversal(struct Node* ptr){
 
     }
 }
-// DELETION:--
+// DELETION:-
 //  Case 1. Deleting the first Node.
 struct Node* deleteFirst(struct Node* head){
     struct Node* ptr = head;
@@ -72,44 +72,51 @@ struct Node * nodeDelete(struct Node* head, struct Node* target){
 struct Node* dataDelete(struct Node* head, int data){
     struct Node* p = head;
     struct Node* q = p->next;
-    while(q->data != data){
+    while(q->data != data&& q->next!= NULL){
         p=q;
         q = q->next;
-    }
-    p->next = q->next;
-    free(q);
-    return head;
-}
-struct Node* dataDelete2(struct Node* head, int data) {
-    if (head == NULL) {
-        return NULL;
-    }
-
-    // Case 1: The node to be deleted is the head node
-    if (head->data == data) {
-        struct Node* temp = head;
-        head = head->next;
-        free(temp);
-        return head;
-    }
-
-    // Case 2: Search for the node in the rest of the list
-    struct Node* p = head;
-    struct Node* q = head->next;
-
-    while (q != NULL && q->data != data) {
-        p = q;
-        q = q->next;
-    }
-
-    // If q is not NULL, we found the node
-    if (q != NULL) {
+    }if(q->data==data){
         p->next = q->next;
         free(q);
     }
-
+    else{
+        printf("Element Not Found\n");
+    }
+    
     return head;
 }
+
+
+// struct Node* dataDelete2(struct Node* head, int data) {
+//     if (head == NULL) {
+//         return NULL;
+//     }
+
+//     // Case 1: The node to be deleted is the head node
+//     if (head->data == data) {
+//         struct Node* temp = head;
+//         head = head->next;
+//         free(temp);
+//         return head;
+//     }
+
+//     // Case 2: Search for the node in the rest of the list
+//     struct Node* p = head;
+//     struct Node* q = head->next;
+
+//     while (q != NULL && q->data != data) {
+//         p = q;
+//         q = q->next;
+//     }
+
+//     // If q is not NULL, we found the node
+//     if (q != NULL) {
+//         p->next = q->next;
+//         free(q);
+//     }
+
+//     return head;
+// }
 int main(){
     struct Node* head;
     struct Node* second;
@@ -144,7 +151,7 @@ int main(){
     // head = deleteFirst(head);
     // indDelete(head, 2);
     // head = nodeDelete(head, third);
-    head = dataDelete2(head, 7);
+    head = dataDelete(head, 7);
     linkedListTraversal(head);
 
 
