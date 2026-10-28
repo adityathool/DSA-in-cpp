@@ -27,6 +27,7 @@ void doubleListTraversal(struct Node* head, const char* f_r){
             ptr=ptr->next;
             
         }
+      
     }
     else if(f_r=="backward"){
         struct Node* ptr = head;
@@ -40,8 +41,11 @@ void doubleListTraversal(struct Node* head, const char* f_r){
             printf("Element> %d\n", ptr->data);
             ptr = ptr->prev;
         }
+       
     
     }
+    
+    
 }
 
 int main() {
@@ -68,6 +72,11 @@ int main() {
 
     doubleListTraversal(head, "backward");
     
-				
+	free(head);
+    free(second);
+    free(third);
+    free(fourth);
+
+
 	return 0;
 }
